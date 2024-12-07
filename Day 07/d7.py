@@ -9,14 +9,14 @@ def solve(res, nums, part2):
     if (res, hashable(nums)) in cacheP2:
         return True
     addition = solve(res - nums[0], nums[1:], part2) if res - nums[0] > 0 else False
-    multiplication = solve (res//nums[0], nums[1:], part2) if res%nums[0] == 0 else False
-    concatination = False
+    multiplication = solve(res//nums[0], nums[1:], part2) if res%nums[0] == 0 else False
+    concatenation = False
     if str(res).endswith(str(nums[0])):
         res2 = ''.join(str(res).rsplit(str(nums[0]), 1)) #remove nums[0] from end of res
-        concatination = solve(int(res2), nums[1:], part2) if res2 != '' else False
-    if addition or multiplication or concatination:
+        concatenation = solve(int(res2), nums[1:], part2) if res2 != '' else False
+    if addition or multiplication or concatenation:
         cacheP2.add((res, hashable(nums)))
-    return addition or multiplication or (concatination and part2)
+    return addition or multiplication or (concatenation and part2)
 
 with open("input.txt", "r") as inputFile:
     p1 = 0
