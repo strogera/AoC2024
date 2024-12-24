@@ -23,6 +23,6 @@ with open("input.txt", "r") as inputFile:
         if op1 not in cables or op2 not in cables:
             waiting.append((op1, op2, op, out))
             continue
-        cables[out] = operation[op]((op1, op2))
+        cables[out] = operation[op]((cables[op1], cables[op2]))
 
     print(int(''.join(str(v) for k, v in sorted(cables.items()) if k[0] == 'z')[::-1], 2))
